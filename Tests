@@ -1,0 +1,2876 @@
+test = {
+  'name': 'Problem 0',
+  'points': 0,
+  'suites': [
+    {
+      'cases': [
+        {
+          'answer': 'It represents the amount of health the insect has left, so the insect is eliminated when it reaches 0',
+          'choices': [
+            r"""
+            It represents armor protecting the insect, so the insect can only
+            be damaged when its armor reaches 0
+            """,
+            r"""
+            It represents the strength of an insect against attacks, which
+            doesn't change throughout the game
+            """,
+            r"""
+            It represents the amount of health the insect has left, so the
+            insect is eliminated when it reaches 0
+            """
+          ],
+          'hidden': False,
+          'locked': False,
+          'question': r"""
+          What is the significance of an Insect's armor attribute? Does this
+          value change? If so, how?
+          """
+        },
+        {
+          'answer': 'damage',
+          'choices': [
+            'damage',
+            'armor',
+            'place',
+            'reduce_armor'
+          ],
+          'hidden': False,
+          'locked': False,
+          'question': 'Which of the following is a class attribute of the Insect class?'
+        },
+        {
+          'answer': 'instance, each Ant instance needs its own armor value',
+          'choices': [
+            'instance, each Ant instance needs its own armor value',
+            'instance, each Ant starts out with a different amount of armor',
+            'class, Ants of the same subclass all have the same amount of starting armor',
+            'class, when one Ant gets damaged, all ants receive the same amount of damage'
+          ],
+          'hidden': False,
+          'locked': False,
+          'question': 'Is the armor attribute of the Ant class an instance or class attribute? Why?'
+        },
+        {
+          'answer': 'class, all Ants of the same subclass deal the same damage',
+          'choices': [
+            'instance, each Ant does damage to bees at different rates',
+            'instance, the damage an Ant depends on where the Ant is',
+            'class, all Ants of the same subclass deal the same damage',
+            'class, all Ants deal the same damage'
+          ],
+          'hidden': False,
+          'locked': False,
+          'question': r"""
+          Is the damage attribute of an Ant subclass (such as ThrowerAnt) an
+          instance or class attribute? Why?
+          """
+        },
+        {
+          'answer': 'Insect',
+          'choices': [
+            'Insect',
+            'Place',
+            'Bee',
+            'Ant'
+          ],
+          'hidden': False,
+          'locked': False,
+          'question': 'Which class do both Ant and Bee inherit from?'
+        },
+        {
+          'answer': 'Ants and Bees both have the attributes armor, damage, and place and the methods reduce_armor and action',
+          'choices': [
+            r"""
+            Ants and Bees both have the attributes armor, damage, and place
+            and the methods reduce_armor and action
+            """,
+            r"""
+            Ants and Bees both have the attribute damage and the methods
+            reduce_armor and action
+            """,
+            'Ants and Bees both take the same action each turn',
+            'Ants and Bees have nothing in common'
+          ],
+          'hidden': False,
+          'locked': False,
+          'question': 'What do instances of Ant and instances of Bee have in common?'
+        },
+        {
+          'answer': 'There can be one Ant and many Bees in a single Place',
+          'choices': [
+            'There can be one Ant and many Bees in a single Place',
+            'There can be one Bee and many Ants in a single Place',
+            'There is no limit on the number of insects in a single Place',
+            'Only one insect can be in a single Place at a time'
+          ],
+          'hidden': False,
+          'locked': False,
+          'question': r"""
+          How many insects can be in a single Place at any given time in the
+          game?
+          """
+        }
+      ],
+      'scored': True,
+      'type': 'concept'
+    }
+  ]
+}
+test = {
+  'name': 'Problem 1',
+  'points': 1,
+  'suites': [
+    {
+      'cases': [
+        {
+          'answer': "Placing an ant into the colony will decrease the colony's total available food by that ant's food_cost",
+          'choices': [
+            r"""
+            Placing an ant into the colony will decrease the colony's total
+            available food by that ant's food_cost
+            """,
+            r"""
+            Each turn, each Ant in the colony eats food_cost food from the
+            colony's total available food
+            """,
+            r"""
+            Each turn, each Ant in the colony adds food_cost food to the
+            colony's total available food
+            """
+          ],
+          'hidden': False,
+          'locked': False,
+          'question': 'What is the purpose of the food_cost attribute?'
+        },
+        {
+          'answer': 'class, all Ants of the same subclass cost the same to deploy',
+          'choices': [
+            'class, all Ants of the same subclass cost the same to deploy',
+            'class, all Ants cost the same to deploy no matter what type of Ant it is',
+            'instance, the food_cost of an Ant depends on the location it is placed',
+            'instance, the food_cost of an Ant is randomized upon initialization'
+          ],
+          'hidden': False,
+          'locked': False,
+          'question': 'What type of attribute is food_cost?'
+        }
+      ],
+      'scored': True,
+      'type': 'concept'
+    },
+    {
+      'cases': [
+        {
+          'code': r"""
+          >>> HarvesterAnt.food_cost
+          2
+          >>> ThrowerAnt.food_cost
+          3
+          """,
+          'hidden': False,
+          'locked': False
+        },
+        {
+          'code': r"""
+          >>> # Testing HarvesterAnt action
+          >>> # Note that initializing an Ant here doesn't cost food, only
+          >>> # deploying an Ant in the game simulation does
+          >>> #
+          >>> hive = Hive(make_test_assault_plan())
+          >>> colony = AntColony(None, hive, ant_types(), dry_layout, (1, 9))
+          >>> colony.food = 4
+          >>> harvester = HarvesterAnt()
+          >>> harvester.action(colony)
+          >>> colony.food
+          5
+          >>> harvester.action(colony)
+          >>> colony.food
+          6
+          """,
+          'hidden': False,
+          'locked': False
+        }
+      ],
+      'scored': True,
+      'setup': r"""
+      >>> from ants import *
+      """,
+      'teardown': '',
+      'type': 'doctest'
+    }
+  ]
+}
+test = {
+  'name': 'Problem 2',
+  'points': 2,
+  'suites': [
+    {
+      'cases': [
+        {
+          'answer': 'A single tile that an Ant can be placed on and that connects to other Places',
+          'choices': [
+            r"""
+            A single tile that an Ant can be placed on and that connects to
+            other Places
+            """,
+            'The entire space where the game takes place',
+            'The tunnel that bees travel through',
+            'Where the bees start out in the game'
+          ],
+          'hidden': False,
+          'locked': False,
+          'question': 'What does a Place represent in the game?'
+        },
+        {
+          'answer': 'When the entrance of that Place instance (another Place instance) is initialized',
+          'choices': [
+            r"""
+            When the entrance of that Place instance (another Place instance)
+            is initialized
+            """,
+            r"""
+            When the exit of that Place instance (another Place instance) is
+            initalized
+            """,
+            'When the Place instance is initialized',
+            'Never, it is always set to None'
+          ],
+          'hidden': False,
+          'locked': False,
+          'question': r"""
+          When is the entrance attribute of a Place instance set to another
+          Place?
+          """
+        }
+      ],
+      'scored': True,
+      'type': 'concept'
+    },
+    {
+      'cases': [
+        {
+          'code': r"""
+          >>> # Simple test for Place
+          >>> place0 = Place('place_0')
+          >>> print(place0.exit)
+          None
+          >>> print(place0.entrance)
+          None
+          >>> place1 = Place('place_1', place0)
+          >>> place1.exit is place0
+          True
+          >>> place0.entrance is place1
+          True
+          """,
+          'hidden': False,
+          'locked': False
+        },
+        {
+          'code': r"""
+          >>> # Testing if entrances are properly initialized
+          >>> tunnel_len = 9
+          >>> for entrance in colony.bee_entrances:
+          ...     num_places = 0
+          ...     place = entrance
+          ...     while place is not colony.queen:
+          ...         num_places += 1
+          ...         assert place.entrance is not None,\
+          ...                 '{0} has no entrance'.format(place.name)
+          ...         place = place.exit
+          ...     assert num_places == tunnel_len,\
+          ...             'Found {0} places in tunnel instead of {1}'.format(num_places,tunnel_len)
+          """,
+          'hidden': False,
+          'locked': False
+        },
+        {
+          'code': r"""
+          >>> # Testing if exits and entrances are different
+          >>> for place in colony.places.values():
+          ...     assert place is not place.exit,\
+          ...             "{0}'s exit leads to itself".format(place.name)
+          ...     assert place is not place.entrance,\
+          ...             "{0}'s entrance leads to itself".format(place.name)
+          ...     if place.exit and place.entrance:
+          ...         assert place.exit is not place.entrance,\
+          ...                 "{0}'s entrance and exit are the same".format(place.name)
+          """,
+          'hidden': False,
+          'locked': False
+        }
+      ],
+      'scored': True,
+      'setup': r"""
+      >>> from ants import *
+      >>> hive, layout = Hive(make_test_assault_plan()), dry_layout
+      >>> dimensions = (1, 9)
+      >>> colony = AntColony(None, hive, ant_types(), layout, dimensions)
+      """,
+      'teardown': '',
+      'type': 'doctest'
+    }
+  ]
+}
+test = {
+  'name': 'Problem 3',
+  'points': 1,
+  'suites': [
+    {
+      'cases': [
+        {
+          'answer': 'The ThrowerAnt finds the nearest place in front of its own place that has Bees and throws at a random Bee in that place',
+          'choices': [
+            r"""
+            The ThrowerAnt finds the nearest place in front of its own place
+            that has Bees and throws at a random Bee in that place
+            """,
+            r"""
+            The ThrowerAnt finds the nearest place behind its own place
+            that has Bees and throws at a random Bee in that place
+            """,
+            r"""
+            The ThrowerAnt finds the nearest place in either direction that has
+            Bees and throws at a random Bee in that place
+            """,
+            'The ThrowerAnt throws at a random Bee in its own Place'
+          ],
+          'hidden': False,
+          'locked': False,
+          'question': 'What Bee should a ThrowerAnt throw at?'
+        },
+        {
+          'answer': "The place's entrance instance attribute",
+          'choices': [
+            "The place's entrance instance attribute",
+            "The place's exit instance attribute",
+            'Increment the place by 1',
+            'Decrement the place by 1'
+          ],
+          'hidden': False,
+          'locked': False,
+          'question': 'How do you get the Place object in front of another Place object?'
+        },
+        {
+          'answer': 'The Hive',
+          'choices': [
+            'The Hive',
+            'None',
+            'An empty Place'
+          ],
+          'hidden': False,
+          'locked': False,
+          'question': 'What is the entrance of the first Place in a tunnel?'
+        },
+        {
+          'answer': 'None',
+          'choices': [
+            'None',
+            'A random Bee in the Hive',
+            'The closest Bee behind the ThrowerAnt'
+          ],
+          'hidden': False,
+          'locked': False,
+          'question': 'What should nearest_bee return if there is no Bee in front of the ThrowerAnt in the tunnel?'
+        }
+      ],
+      'scored': False,
+      'type': 'concept'
+    },
+    {
+      'cases': [
+        {
+          'code': r"""
+          >>> # Testing nearest_bee
+          >>> thrower = ThrowerAnt()
+          >>> near_bee = Bee(2) # A Bee with 2 armor
+          >>> far_bee = Bee(3)  # A Bee with 3 armor
+          >>> ant_place = colony.places['tunnel_0_0']
+          >>> near_place = colony.places['tunnel_0_3']
+          >>> far_place = colony.places['tunnel_0_6']
+          >>> ant_place.add_insect(thrower)
+          >>> near_place.add_insect(near_bee)
+          >>> far_place.add_insect(far_bee)
+          >>> nearest_bee = thrower.nearest_bee(colony.hive)
+          >>> nearest_bee.armor
+          2
+          >>> thrower.action(colony)    # Attack! ThrowerAnts do 1 damage
+          >>> near_bee.armor
+          1
+          >>> far_bee.armor
+          3
+          >>> thrower.place is ant_place    # Don't change self.place!
+          True
+          """,
+          'hidden': False,
+          'locked': False
+        },
+        {
+          'code': r"""
+          >>> # Testing nearest_bee
+          >>> thrower = ThrowerAnt()
+          >>> colony.places['tunnel_0_0'].add_insect(thrower)
+          >>> place = colony.places['tunnel_0_0']
+          >>> near_bee = Bee(2)
+          >>> far_bee = Bee(2)
+          >>> colony.places["tunnel_0_3"].add_insect(near_bee)
+          >>> colony.places["tunnel_0_6"].add_insect(far_bee)
+          >>> hive = colony.hive
+          >>> thrower.nearest_bee(hive) is far_bee
+          False
+          >>> thrower.nearest_bee(hive) is near_bee
+          True
+          >>> thrower.action(colony)    # Attack!
+          >>> near_bee.armor            # Should do 1 damage
+          1
+          >>> thrower.place is place    # Don't change self.place!
+          True
+          """,
+          'hidden': False,
+          'locked': False
+        },
+        {
+          'code': r"""
+          >>> # Testing Nearest bee not in the hive
+          >>> thrower = ThrowerAnt()
+          >>> colony.places["tunnel_0_0"].add_insect(thrower)
+          >>> hive = colony.hive
+          >>> bee = Bee(2)
+          >>> hive.add_insect(bee)      # Adding a bee to the hive
+          >>> thrower.nearest_bee(hive) is bee
+          False
+          >>> thrower.action(colony)    # Attempt to attack
+          >>> bee.armor                 # Bee armor should not change
+          2
+          """,
+          'hidden': False,
+          'locked': False
+        },
+        {
+          'code': r"""
+          >>> # Test that ThrowerAnt attacks bees on its own square
+          >>> thrower = ThrowerAnt()
+          >>> colony.places['tunnel_0_0'].add_insect(thrower)
+          >>> near_bee = Bee(2)
+          >>> colony.places["tunnel_0_0"].add_insect(near_bee)
+          >>> thrower.nearest_bee(colony.hive) is near_bee
+          True
+          >>> thrower.action(colony)   # Attack!
+          >>> near_bee.armor           # should do 1 damage
+          1
+          """,
+          'hidden': False,
+          'locked': False
+        },
+        {
+          'code': r"""
+          >>> # Test that ThrowerAnt attacks bees at end of tunnel
+          >>> thrower = ThrowerAnt()
+          >>> colony.places['tunnel_0_0'].add_insect(thrower)
+          >>> near_bee = Bee(2)
+          >>> colony.places["tunnel_0_8"].add_insect(near_bee)
+          >>> thrower.nearest_bee(colony.hive) is near_bee
+          True
+          >>> thrower.action(colony)   # Attack!
+          >>> near_bee.armor           # should do 1 damage
+          1
+          """,
+          'hidden': False,
+          'locked': False
+        },
+        {
+          'code': r"""
+          >>> # Testing ThrowerAnt chooses a random target
+          >>> thrower = ThrowerAnt()
+          >>> colony.places["tunnel_0_0"].add_insect(thrower)
+          >>> bee1 = Bee(1001)
+          >>> bee2 = Bee(1001)
+          >>> colony.places["tunnel_0_3"].add_insect(bee1)
+          >>> colony.places["tunnel_0_3"].add_insect(bee2)
+          >>> # Throw 1000 times. The first bee should take ~1000*1/2 = ~500 damage,
+          >>> # and have ~501 remaining.
+          >>> for _ in range(1000):
+          ...     thrower.action(colony)
+          >>> # Test if damage to bee1 is within 6 standard deviations (~95 damage)
+          >>> # If bees are chosen uniformly, this is true 99.9999998% of the time.
+          >>> def dmg_within_tolerance():
+          ...     return abs(bee1.armor-501) < 95
+          >>> dmg_within_tolerance()
+          True
+          """,
+          'hidden': False,
+          'locked': False
+        }
+      ],
+      'scored': True,
+      'setup': r"""
+      >>> from ants import *
+      >>> hive, layout = Hive(AssaultPlan()), dry_layout
+      >>> dimensions = (1, 9)
+      >>> colony = AntColony(None, hive, ant_types(), layout, dimensions)
+      """,
+      'teardown': '',
+      'type': 'doctest'
+    }
+  ]
+}
+test = {
+  'name': 'Problem 4',
+  'points': 2,
+  'suites': [
+    {
+      'cases': [
+        {
+          'answer': 'ThrowerAnt',
+          'choices': [
+            'ThrowerAnt',
+            'ShortThrower',
+            'LongThrower',
+            'Bee'
+          ],
+          'hidden': False,
+          'locked': False,
+          'question': 'What class do ShortThrower and LongThrower inherit from?'
+        },
+        {
+          'answer': 'There is no restriction on how far a regular ThrowerAnt can throw',
+          'choices': [
+            'A regular ThrowerAnt can only attack Bees at least 3 places away',
+            'A regular ThrowerAnt can only attack Bees at most 3 places away',
+            'A regular ThrowerAnt can only attack Bees at most 5 places away',
+            'There is no restriction on how far a regular ThrowerAnt can throw'
+          ],
+          'hidden': False,
+          'locked': False,
+          'question': 'What constraint does a regular ThrowerAnt have on its throwing distance?'
+        },
+        {
+          'answer': 'A LongThrower can only attack Bees at least 5 places away',
+          'choices': [
+            'A LongThrower can only attack Bees at least 5 places away',
+            'A LongThrower can only attack Bees at least 3 places away',
+            'A LongThrower can only attack Bees at most 5 places away',
+            'There is no restriction on how far a LongThrower can throw'
+          ],
+          'hidden': False,
+          'locked': False,
+          'question': 'What constraint does a LongThrower have on its throwing distance?'
+        },
+        {
+          'answer': 'A ShortThrower can only attack Bees at most 3 places away',
+          'choices': [
+            'A ShortThrower can only attack Bees at least 3 places away',
+            'A ShortThrower can only attack Bees at most 3 places away',
+            'A ShortThrower can only attack Bees at most 5 places away',
+            'There is no restriction on how far a ShortThrower can throw'
+          ],
+          'hidden': False,
+          'locked': False,
+          'question': 'What constraint does a ShortThrower have on its throwing distance?'
+        },
+        {
+          'answer': 'The closest Bee in front of it within range',
+          'choices': [
+            'The closest Bee in front of it within range',
+            'The closest Bee behind it within range',
+            'Any Bee in its current Place',
+            'Any Bee within range'
+          ],
+          'hidden': False,
+          'locked': False,
+          'question': r"""
+          With the addition of these new ThrowerAnt subclasses, we must modify
+          our definition of nearest_bee. Now what Bee should ThrowerAnts throw
+          at?
+          """
+        }
+      ],
+      'scored': False,
+      'type': 'concept'
+    },
+    {
+      'cases': [
+        {
+          'code': r"""
+          >>> # Testing Long/ShortThrower parameters
+          >>> ShortThrower.food_cost
+          2
+          >>> LongThrower.food_cost
+          2
+          >>> short_t = ShortThrower()
+          >>> long_t = LongThrower()
+          >>> short_t.armor
+          1
+          >>> long_t.armor
+          1
+          """,
+          'hidden': False,
+          'locked': False
+        },
+        {
+          'code': r"""
+          >>> # Test LongThrower Hit
+          >>> ant = LongThrower()
+          >>> in_range = Bee(2)
+          >>> colony.places['tunnel_0_0'].add_insect(ant)
+          >>> colony.places["tunnel_0_5"].add_insect(in_range)
+          >>> ant.action(colony)
+          >>> in_range.armor
+          1
+          """,
+          'hidden': False,
+          'locked': False
+        },
+        {
+          'code': r"""
+          >>> # Testing LongThrower miss
+          >>> ant = LongThrower()
+          >>> out_of_range = Bee(2)
+          >>> colony.places["tunnel_0_0"].add_insect(ant)
+          >>> colony.places["tunnel_0_4"].add_insect(out_of_range)
+          >>> ant.action(colony)
+          >>> out_of_range.armor
+          2
+          """,
+          'hidden': False,
+          'locked': False
+        },
+        {
+          'code': r"""
+          >>> # Testing LongThrower targets farther one
+          >>> ant = LongThrower()
+          >>> out_of_range = Bee(2)
+          >>> in_range = Bee(2)
+          >>> colony.places["tunnel_0_0"].add_insect(ant)
+          >>> colony.places["tunnel_0_4"].add_insect(out_of_range)
+          >>> colony.places["tunnel_0_5"].add_insect(in_range)
+          >>> ant.action(colony)
+          >>> out_of_range.armor
+          2
+          >>> in_range.armor
+          1
+          """,
+          'hidden': False,
+          'locked': False
+        },
+        {
+          'code': r"""
+          >>> # Test ShortThrower hit
+          >>> ant = ShortThrower()
+          >>> in_range = Bee(2)
+          >>> colony.places['tunnel_0_0'].add_insect(ant)
+          >>> colony.places["tunnel_0_3"].add_insect(in_range)
+          >>> ant.action(colony)
+          >>> in_range.armor
+          1
+          """,
+          'hidden': False,
+          'locked': False
+        },
+        {
+          'code': r"""
+          >>> # Testing ShortThrower miss
+          >>> ant = ShortThrower()
+          >>> out_of_range = Bee(2)
+          >>> colony.places["tunnel_0_0"].add_insect(ant)
+          >>> colony.places["tunnel_0_4"].add_insect(out_of_range)
+          >>> ant.action(colony)
+          >>> out_of_range.armor
+          2
+          """,
+          'hidden': False,
+          'locked': False
+        },
+        {
+          'code': r"""
+          >>> # Testing LongThrower ignores bees outside range
+          >>> thrower = LongThrower()
+          >>> colony.places["tunnel_0_0"].add_insect(thrower)
+          >>> bee1 = Bee(1001)
+          >>> bee2 = Bee(1001)
+          >>> colony.places["tunnel_0_4"].add_insect(bee1)
+          >>> colony.places["tunnel_0_5"].add_insect(bee2)
+          >>> thrower.action(colony)
+          >>> bee1.armor
+          1001
+          >>> bee2.armor
+          1000
+          """,
+          'hidden': False,
+          'locked': False
+        },
+        {
+          'code': r"""
+          >>> # Testing LongThrower attacks nearest bee in range
+          >>> thrower = LongThrower()
+          >>> colony.places["tunnel_0_0"].add_insect(thrower)
+          >>> bee1 = Bee(1001)
+          >>> bee2 = Bee(1001)
+          >>> colony.places["tunnel_0_5"].add_insect(bee1)
+          >>> colony.places["tunnel_0_6"].add_insect(bee2)
+          >>> thrower.action(colony)
+          >>> bee1.armor
+          1000
+          >>> bee2.armor
+          1001
+          """,
+          'hidden': False,
+          'locked': False
+        },
+        {
+          'code': r"""
+          >>> # Testing if max_range is looked up in the instance
+          >>> ant = ShortThrower()
+          >>> ant.max_range = 10   # Buff the ant's range
+          >>> colony.places["tunnel_0_0"].add_insect(ant)
+          >>> bee = Bee(2)
+          >>> colony.places["tunnel_0_6"].add_insect(bee)
+          >>> ant.action(colony)
+          >>> bee.armor
+          1
+          """,
+          'hidden': False,
+          'locked': False
+        }
+      ],
+      'scored': True,
+      'setup': r"""
+      >>> from ants import *
+      >>> hive, layout = Hive(AssaultPlan()), dry_layout
+      >>> dimensions = (1, 9)
+      >>> colony = AntColony(None, hive, ant_types(), layout, dimensions)
+      """,
+      'teardown': '',
+      'type': 'doctest'
+    },
+    {
+      'cases': [
+        {
+          'code': r"""
+          >>> # Testing LongThrower Inheritance from ThrowerAnt
+          >>> def new_action(self, colony):
+          ...     raise NotImplementedError()
+          >>> def new_throw_at(self, target):
+          ...     raise NotImplementedError()
+          >>> old_thrower_action = ThrowerAnt.action
+          >>> old_throw_at = ThrowerAnt.throw_at
+          
+          >>> ThrowerAnt.action = new_action
+          >>> test_long = LongThrower()
+          >>> passed = 0
+          >>> try:
+          ...     test_long.action(colony)
+          ... except NotImplementedError:
+          ...     passed += 1
+          >>> ThrowerAnt.action = old_thrower_action
+          >>> ThrowerAnt.throw_at = new_throw_at
+          >>> test_long = LongThrower()
+          >>> try:
+          ...     test_long.throw_at(Bee(1))
+          ... except NotImplementedError:
+          ...     passed += 1
+          >>> ThrowerAnt.throw_at = old_throw_at
+          >>> passed
+          2
+          """,
+          'hidden': False,
+          'locked': False
+        },
+        {
+          'code': r"""
+          >>> # Testing ShortThrower Inheritance from ThrowerAnt
+          >>> def new_action(self, colony):
+          ...     raise NotImplementedError()
+          >>> def new_throw_at(self, target):
+          ...     raise NotImplementedError()
+          >>> old_thrower_action = ThrowerAnt.action
+          >>> old_throw_at = ThrowerAnt.throw_at
+          
+          >>> ThrowerAnt.action = new_action
+          >>> test_short = ShortThrower()
+          >>> passed = 0
+          >>> try:
+          ...     test_short.action(colony)
+          ... except NotImplementedError:
+          ...     passed += 1
+          
+          >>> ThrowerAnt.action = old_thrower_action
+          >>> ThrowerAnt.throw_at = new_throw_at
+          >>> test_short = ShortThrower()
+          >>> try:
+          ...     test_short.throw_at(Bee(1))
+          ... except NotImplementedError:
+          ...     passed += 1
+          
+          >>> ThrowerAnt.throw_at = old_throw_at
+          >>> passed
+          2
+          """,
+          'hidden': False,
+          'locked': False
+        }
+      ],
+      'scored': True,
+      'setup': r"""
+      >>> from ants import *
+      >>> hive, layout = Hive(AssaultPlan()), dry_layout
+      >>> dimensions = (1, 9)
+      >>> colony = AntColony(None, hive, ant_types(), layout, dimensions)
+      """,
+      'teardown': r"""
+      >>> ThrowerAnt.action = old_thrower_action
+      >>> ThrowerAnt.throw_at = old_throw_at
+      """,
+      'type': 'doctest'
+    }
+  ]
+}
+test = {
+  'name': 'Problem 5',
+  'points': 2,
+  'suites': [
+    {
+      'cases': [
+        {
+          'answer': 'By accessing the place instance attribute, which is a Place object',
+          'choices': [
+            'By accessing the place instance attribute, which is a Place object',
+            r"""
+            By accessing the place instance attribute, which is the name of
+            some Place object
+            """,
+            'By calling the Place constructor, passing in the FireAnt instance',
+            'By calling the FireAnt constructor'
+          ],
+          'hidden': False,
+          'locked': False,
+          'question': 'How can you obtain the current place of a FireAnt?'
+        },
+        {
+          'answer': 'By accessing the bees instance attribute, which is a list of Bee objects',
+          'choices': [
+            r"""
+            By accessing the bees instance attribute, which is a list of Bee
+            objects
+            """,
+            r"""
+            By accessing the bees instance attribute, which is a dictionary of
+            Bee objects
+            """,
+            'By calling the add_insect method on the place instance',
+            'By calling the Bee constructor, passing in the place instance'
+          ],
+          'hidden': False,
+          'locked': False,
+          'question': 'How can you obtain all of the Bees currently in some place?'
+        },
+        {
+          'answer': 'Yes, but you should iterate over a copy of the list to avoid skipping elements',
+          'choices': [
+            r"""
+            Yes, but you should iterate over a copy of the list to avoid skipping
+            elements
+            """,
+            'Yes, you can mutate a list while iterating over it with no problems',
+            r"""
+            No, Python doesn't allow list mutation on a list that is being
+            iterated through
+            """
+          ],
+          'hidden': False,
+          'locked': False,
+          'question': 'Can you iterate over a list while mutating it?'
+        }
+      ],
+      'scored': False,
+      'type': 'concept'
+    },
+    {
+      'cases': [
+        {
+          'code': r"""
+          >>> # Testing FireAnt parameters
+          >>> fire = FireAnt()
+          >>> FireAnt.food_cost
+          5
+          >>> fire.armor
+          1
+          """,
+          'hidden': False,
+          'locked': False
+        },
+        {
+          'code': r"""
+          >>> # Testing fire does damage to all Bees in its Place
+          >>> place = colony.places['tunnel_0_4']
+          >>> place.add_insect(FireAnt())   # Add a FireAnt with 1 armor
+          >>> place.add_insect(Bee(3))      # Add a Bee with 3 armor
+          >>> place.add_insect(Bee(5))      # Add a Bee with 5 armor
+          >>> len(place.bees)               # How many bees are there?
+          2
+          >>> place.bees[0].action(colony)  # The first Bee attacks FireAnt
+          >>> len(place.bees)               # How many bees are left?
+          1
+          >>> place.bees[0].armor           # What is the armor of the remaining Bee?
+          2
+          """,
+          'hidden': False,
+          'locked': False
+        },
+        {
+          'code': r"""
+          >>> # Testing fire damage
+          >>> place = colony.places['tunnel_0_4']
+          >>> bee = Bee(5)
+          >>> place.add_insect(bee)
+          >>> place.add_insect(FireAnt())
+          >>> bee.action(colony) # attack the FireAnt
+          >>> bee.armor
+          2
+          """,
+          'hidden': False,
+          'locked': False
+        },
+        {
+          'code': r"""
+          >>> # Testing fire does damage to all Bees in its Place
+          >>> place = colony.places['tunnel_0_4']
+          >>> place.add_insect(FireAnt())
+          >>> for i in range(100):          # Add 100 Bees with 3 armor
+          ...     place.add_insect(Bee(3))
+          >>> place.bees[0].action(colony)  # The first Bee attacks FireAnt
+          >>> len(place.bees)               # How many bees are left?
+          0
+          """,
+          'hidden': False,
+          'locked': False
+        },
+        {
+          'code': r"""
+          >>> # Testing fire damage is instance attribute
+          >>> place = colony.places['tunnel_0_4']
+          >>> bee = Bee(900)
+          >>> buffAnt = FireAnt()
+          >>> buffAnt.damage = 500   # Feel the burn!
+          >>> place.add_insect(bee)
+          >>> place.add_insect(buffAnt)
+          >>> bee.action(colony) # attack the FireAnt
+          >>> bee.armor  # is damage an instance attribute?
+          400
+          """,
+          'hidden': False,
+          'locked': False
+        },
+        {
+          'code': r"""
+          >>> # General FireAnt Test
+          >>> place = colony.places['tunnel_0_4']
+          >>> bee = Bee(10)
+          >>> ant = FireAnt()
+          >>> place.add_insect(bee)
+          >>> place.add_insect(ant)
+          >>> bee.action(colony)    # Attack the FireAnt
+          >>> bee.armor
+          7
+          >>> ant.armor
+          0
+          >>> place.ant is None     # The FireAnt should not occupy the place anymore
+          True
+          >>> bee.action(colony)
+          >>> bee.armor             # Bee should not get damaged again
+          7
+          >>> bee.place.name        # Bee should not have been blocked
+          'tunnel_0_3'
+          """,
+          'hidden': False,
+          'locked': False
+        },
+        {
+          'code': r"""
+          >>> # General FireAnt Test
+          >>> place = colony.places['tunnel_0_4']
+          >>> bee = Bee(10)
+          >>> ant = FireAnt()
+          >>> place.add_insect(bee)
+          >>> place.add_insect(ant)
+          >>> ant.reduce_armor(0.1) # Poke the FireAnt
+          >>> bee.armor             # Bee should not get damaged
+          10
+          >>> ant.armor
+          0.9
+          >>> place.ant is ant      # The FireAnt should still be at place
+          True
+          """,
+          'hidden': False,
+          'locked': False
+        }
+      ],
+      'scored': True,
+      'setup': r"""
+      >>> from ants import *
+      >>> hive, layout = Hive(AssaultPlan()), dry_layout
+      >>> dimensions = (1, 9)
+      >>> colony = AntColony(None, hive, ant_types(), layout, dimensions)
+      """,
+      'teardown': '',
+      'type': 'doctest'
+    }
+  ]
+}
+test = {
+  'name': 'Problem 6',
+  'points': 2,
+  'suites': [
+    {
+      'cases': [
+        {
+          'answer': 'instance, each HungryAnt instance digests independently of other HungryAnt instances',
+          'choices': [
+            r"""
+            instance, each HungryAnt instance digests independently of other
+            HungryAnt instances
+            """,
+            'instance, all HungryAnt instances in the game digest simultaneously',
+            r"""
+            class, each HungryAnt instance digests independently of other
+            HungryAnt instances
+            """,
+            'class, all HungryAnt instances in the game digest simultaneously'
+          ],
+          'hidden': False,
+          'locked': False,
+          'question': 'Should digesting be an instance or class attribute? Why?'
+        },
+        {
+          'answer': 'When it is not digesting, i.e. when its digesting attribute is 0',
+          'choices': [
+            'When it is not digesting, i.e. when its digesting attribute is 0',
+            'When it is digesting, i.e. when its digesting attribute is at least 1',
+            'Each turn',
+            'Whenever a Bee is in its place'
+          ],
+          'hidden': False,
+          'locked': False,
+          'question': 'When is a HungryAnt able to eat a Bee?'
+        },
+        {
+          'answer': 'A random Bee in the same place as itself',
+          'choices': [
+            'A random Bee in the same place as itself',
+            'The closest Bee in front of it',
+            'The closest Bee behind it',
+            'The closest Bee in either direction'
+          ],
+          'hidden': False,
+          'locked': False,
+          'question': 'When a HungryAnt is able to eat, which Bee does it eat?'
+        }
+      ],
+      'scored': False,
+      'type': 'concept'
+    },
+    {
+      'cases': [
+        {
+          'code': r"""
+          >>> # Testing HungryAnt parameters
+          >>> hungry = HungryAnt()
+          >>> HungryAnt.food_cost
+          4
+          >>> hungry.armor
+          1
+          """,
+          'hidden': False,
+          'locked': False
+        },
+        {
+          'code': r"""
+          >>> # Testing HungryAnt eats and digests
+          >>> hungry = HungryAnt()
+          >>> bee1 = Bee(1000)              # A Bee with 1000 armor
+          >>> place = colony.places["tunnel_0_0"]
+          >>> place.add_insect(hungry)
+          >>> place.add_insect(bee1)         # Add the Bee to the same place as HungryAnt
+          >>> hungry.action(colony)
+          >>> bee1.armor
+          0
+          >>> bee2 = Bee(1)                 # A Bee with 1 armor
+          >>> place.add_insect(bee2)
+          >>> for _ in range(3):
+          ...     hungry.action(colony)     # Digesting...not eating
+          >>> bee2.armor
+          1
+          >>> hungry.action(colony)
+          >>> bee2.armor
+          0
+          """,
+          'hidden': False,
+          'locked': False
+        },
+        {
+          'code': r"""
+          >>> # Testing HungryAnt eats and digests
+          >>> hungry = HungryAnt()
+          >>> super_bee, wimpy_bee = Bee(1000), Bee(1)
+          >>> place = colony.places["tunnel_0_0"]
+          >>> place.add_insect(hungry)
+          >>> place.add_insect(super_bee)
+          >>> hungry.action(colony)         # super_bee is no match for HungryAnt!
+          >>> super_bee.armor
+          0
+          >>> place.add_insect(wimpy_bee)
+          >>> for _ in range(3):
+          ...     hungry.action(colony)     # digesting...not eating
+          >>> wimpy_bee.armor
+          1
+          >>> hungry.action(colony)         # back to eating!
+          >>> wimpy_bee.armor
+          0
+          """,
+          'hidden': False,
+          'locked': False
+        },
+        {
+          'code': r"""
+          >>> # Testing HungryAnt only waits when digesting
+          >>> hungry = HungryAnt()
+          >>> place = colony.places["tunnel_0_0"]
+          >>> place.add_insect(hungry)
+          >>> # Wait a few turns before adding Bee
+          >>> for _ in range(5):
+          ...     hungry.action(colony)  # shouldn't be digesting
+          >>> bee = Bee(3)
+          >>> place.add_insect(bee)
+          >>> hungry.action(colony)  # Eating time!
+          >>> bee.armor
+          0
+          >>> bee = Bee(3)
+          >>> place.add_insect(bee)
+          >>> for _ in range(3):
+          ...     hungry.action(colony)     # Should be digesting
+          >>> bee.armor
+          3
+          >>> hungry.action(colony)
+          >>> bee.armor
+          0
+          """,
+          'hidden': False,
+          'locked': False
+        },
+        {
+          'code': r"""
+          >>> # Testing HungryAnt digest time looked up on instance
+          >>> very_hungry = HungryAnt()  # Add very hungry caterpi- um, ant
+          >>> very_hungry.time_to_digest = 0
+          >>> place = colony.places["tunnel_0_0"]
+          >>> place.add_insect(very_hungry)
+          >>> for _ in range(100):
+          ...     place.add_insect(Bee(3))
+          >>> for _ in range(100):
+          ...     very_hungry.action(colony)   # Eat all the bees!
+          >>> len(place.bees)
+          0
+          """,
+          'hidden': False,
+          'locked': False
+        },
+        {
+          'code': r"""
+          >>> # Testing HungryAnt dies while eating
+          >>> hungry = HungryAnt()
+          >>> place = colony.places["tunnel_0_0"]
+          >>> place.add_insect(hungry)
+          >>> place.add_insect(Bee(3))
+          >>> hungry.action(colony)
+          >>> len(place.bees)
+          0
+          >>> bee = Bee(3)
+          >>> place.add_insect(bee)
+          >>> bee.action(colony) # Bee kills digesting ant
+          >>> place.ant is None
+          True
+          >>> len(place.bees)
+          1
+          """,
+          'hidden': False,
+          'locked': False
+        }
+      ],
+      'scored': True,
+      'setup': r"""
+      >>> from ants import *
+      >>> hive, layout = Hive(AssaultPlan()), dry_layout
+      >>> dimensions = (1, 9)
+      >>> colony = AntColony(None, hive, ant_types(), layout, dimensions)
+      """,
+      'teardown': '',
+      'type': 'doctest'
+    }
+  ]
+}
+test = {
+  'name': 'Problem 7',
+  'points': 2,
+  'suites': [
+    {
+      'cases': [
+        {
+          'answer': 'All Ant types have a blocks_path attribute that is inherited from the Ant superclass',
+          'choices': [
+            r"""
+            All Ant types have a blocks_path attribute that is inherited from
+            the Ant superclass
+            """,
+            'Only the NinjaAnt has a blocks_path attribute',
+            'None of the Ant subclasses have a blocks_path attribute',
+            'All Ant types except for NinjaAnt have a blocks_path attribute'
+          ],
+          'hidden': False,
+          'locked': False,
+          'question': 'Which Ant types have a blocks_path attribute?'
+        },
+        {
+          'answer': 'blocks_path is True for every Ant subclass except NinjaAnt',
+          'choices': [
+            'blocks_path is True for every Ant subclass except NinjaAnt',
+            'blocks_path is False for every Ant subclass except NinjaAnt',
+            'blocks_path is True for all Ants',
+            'blocks_path is False for all Ants'
+          ],
+          'hidden': False,
+          'locked': False,
+          'question': 'What is the value of blocks_path for each Ant subclass?'
+        },
+        {
+          'answer': "When there is an Ant whose blocks_path attribute is True in the Bee's place",
+          'choices': [
+            "When there is an Ant in the Bee's place",
+            r"""
+            When there is an Ant whose blocks_path attribute is True in the
+            Bee's place
+            """,
+            "When there is not an NinjaAnt in the Bee's place",
+            "When there are no Ants in the Bee's place"
+          ],
+          'hidden': False,
+          'locked': False,
+          'question': 'When is the path of a Bee blocked?'
+        },
+        {
+          'answer': "Reduces the Bee's armor by the NinjaAnt's damage attribute",
+          'choices': [
+            "Reduces the Bee's armor by the NinjaAnt's damage attribute",
+            "Reduces the Bee's armor to 0",
+            "Nothing, the NinjaAnt doesn't damage Bees",
+            "Blocks the Bee's path"
+          ],
+          'hidden': False,
+          'locked': False,
+          'question': 'What does a NinjaAnt do to each Bee that flies in its place?'
+        }
+      ],
+      'scored': False,
+      'type': 'concept'
+    },
+    {
+      'cases': [
+        {
+          'code': r"""
+          >>> # Testing NinjaAnt parameters
+          >>> ninja = NinjaAnt()
+          >>> ninja.armor
+          1
+          >>> NinjaAnt.food_cost
+          5
+          """,
+          'hidden': False,
+          'locked': False
+        },
+        {
+          'code': r"""
+          >>> # Testing NinjaAnts do not block bees
+          >>> p0 = colony.places["tunnel_0_0"]
+          >>> p1 = colony.places["tunnel_0_1"]  # p0 is p1's exit
+          >>> bee = Bee(2)
+          >>> ninja = NinjaAnt()
+          >>> thrower = ThrowerAnt()
+          >>> p0.add_insect(thrower)            # Add ThrowerAnt to p0
+          >>> p1.add_insect(bee)
+          >>> p1.add_insect(ninja)              # Add the Bee and NinjaAnt to p1
+          >>> bee.action(colony)
+          >>> bee.place is ninja.place          # Did NinjaAnt block the Bee from moving?
+          False
+          >>> bee.place is p0
+          True
+          >>> ninja.armor
+          1
+          >>> bee.action(colony)
+          >>> bee.place is p0                   # Did ThrowerAnt block the Bee from moving?
+          True
+          """,
+          'hidden': False,
+          'locked': False
+        },
+        {
+          'code': r"""
+          >>> # Testing NinjaAnt strikes all bees in its place
+          >>> test_place = colony.places["tunnel_0_0"]
+          >>> for _ in range(3):
+          ...     test_place.add_insect(Bee(2))
+          >>> ninja = NinjaAnt()
+          >>> test_place.add_insect(ninja)
+          >>> ninja.action(colony)   # should strike all bees in place
+          >>> [bee.armor for bee in test_place.bees]
+          [1, 1, 1]
+          """,
+          'hidden': False,
+          'locked': False
+        },
+        {
+          'code': r"""
+          >>> # Testing NinjaAnt strikes all bees, even if some expire
+          >>> test_place = colony.places["tunnel_0_0"]
+          >>> for _ in range(3):
+          ...     test_place.add_insect(Bee(1))
+          >>> ninja = NinjaAnt()
+          >>> test_place.add_insect(ninja)
+          >>> ninja.action(colony)   # should strike all bees in place
+          >>> len(test_place.bees)
+          0
+          """,
+          'hidden': False,
+          'locked': False
+        },
+        {
+          'code': r"""
+          >>> # Testing damage is looked up on the instance
+          >>> place = colony.places["tunnel_0_0"]
+          >>> bee = Bee(900)
+          >>> place.add_insect(bee)
+          >>> buffNinja = NinjaAnt()
+          >>> buffNinja.damage = 500  # Sharpen the sword
+          >>> place.add_insect(buffNinja)
+          >>> buffNinja.action(colony)
+          >>> bee.armor
+          400
+          """,
+          'hidden': False,
+          'locked': False
+        },
+        {
+          'code': r"""
+          >>> # Testing Ninja ant does not crash when left alone
+          >>> ninja = NinjaAnt()
+          >>> colony.places["tunnel_0_0"].add_insect(ninja)
+          >>> ninja.action(colony)
+          """,
+          'hidden': False,
+          'locked': False
+        },
+        {
+          'code': r"""
+          >>> # Testing Bee does not crash when left alone
+          >>> bee = Bee(3)
+          >>> colony.places["tunnel_0_1"].add_insect(bee)
+          >>> bee.action(colony)
+          """,
+          'hidden': False,
+          'locked': False
+        }
+      ],
+      'scored': True,
+      'setup': r"""
+      >>> from ants import *
+      >>> hive, layout = Hive(AssaultPlan()), dry_layout
+      >>> dimensions = (1, 9)
+      >>> colony = AntColony(None, hive, ant_types(), layout, dimensions)
+      """,
+      'teardown': '',
+      'type': 'doctest'
+    }
+  ]
+}
+test = {
+  'name': 'Problem 8',
+  'points': 1,
+  'suites': [
+    {
+      'cases': [
+        {
+          'answer': 'Ant',
+          'choices': [
+            'Ant',
+            'ThrowerAnt',
+            'NinjaAnt',
+            'The WallAnt class does not inherit from any class'
+          ],
+          'hidden': False,
+          'locked': False,
+          'question': 'What class does WallAnt inherit from?'
+        },
+        {
+          'answer': 'A WallAnt takes no action each turn',
+          'choices': [
+            'A WallAnt takes no action each turn',
+            'A WallAnt increases its own armor by 1 each turn',
+            'A WallAnt reduces its own armor by 1 each turn',
+            'A WallAnt attacks all the Bees in its place each turn'
+          ],
+          'hidden': False,
+          'locked': False,
+          'question': "What is a WallAnt's action?"
+        },
+        {
+          'answer': 'Ant subclasses inherit the action method from the Insect class',
+          'choices': [
+            'Ant subclasses inherit the action method from the Insect class',
+            'Ant subclasses inherit the action method from the Ant class',
+            'Ant subclasses do not inherit the action method from any class'
+          ],
+          'hidden': False,
+          'locked': False,
+          'question': 'Where do Ant subclasses inherit the action method from?'
+        },
+        {
+          'answer': 'Nothing',
+          'choices': [
+            'Nothing',
+            'Throw a leaf at the nearest Bee',
+            'Move to the next place',
+            'Reduce the armor of all Bees in its place'
+          ],
+          'hidden': False,
+          'locked': False,
+          'question': r"""
+          If a subclass of Ant does not override the action method, what is the
+          default action?
+          """
+        }
+      ],
+      'scored': False,
+      'type': 'concept'
+    },
+    {
+      'cases': [
+        {
+          'code': r"""
+          >>> # Testing WallAnt parameters
+          >>> wall = WallAnt()
+          >>> wall.armor
+          4
+          >>> WallAnt.food_cost
+          4
+          """,
+          'hidden': False,
+          'locked': False
+        },
+        {
+          'code': r"""
+          >>> # Testing WallAnt holds strong
+          >>> hive, layout = Hive(AssaultPlan()), dry_layout
+          >>> colony = AntColony(None, hive, ant_types(), layout, (1, 9))
+          >>> place = colony.places['tunnel_0_4']
+          >>> wall = WallAnt()
+          >>> bee = Bee(1000)
+          >>> place.add_insect(wall)
+          >>> place.add_insect(bee)
+          >>> for i in range(3):
+          ...     bee.action(colony)
+          ...     wall.action(colony)   # WallAnt does nothing
+          >>> wall.armor
+          1
+          >>> bee.armor
+          1000
+          >>> wall.place is place
+          True
+          >>> bee.place is place
+          True
+          """,
+          'hidden': False,
+          'locked': False
+        }
+      ],
+      'scored': True,
+      'setup': r"""
+      >>> from ants import *
+      """,
+      'teardown': '',
+      'type': 'doctest'
+    }
+  ]
+}
+test = {
+  'name': 'Problem 9',
+  'points': 4,
+  'suites': [
+    {
+      'cases': [
+        {
+          'answer': 'The Ant instance that is in the same place as itself',
+          'choices': [
+            'The Ant instance that is in the same place as itself',
+            'The Ant instance in the place closest to its own place',
+            'A random Ant instance in the colony',
+            'All the Ant instances in the colony'
+          ],
+          'hidden': False,
+          'locked': False,
+          'question': 'Which Ant does a BodyguardAnt guard?'
+        },
+        {
+          'answer': 'By hiding the ant from Bees and acting in its place',
+          'choices': [
+            'By hiding the ant from Bees and acting in its place',
+            'By attacking Bees that try to attack it',
+            "By increasing the ant's armor",
+            'By allowing Bees to pass without attacking'
+          ],
+          'hidden': False,
+          'locked': False,
+          'question': 'How does a BodyguardAnt guard its ant?'
+        },
+        {
+          'answer': "In the BodyguardAnt's ant instance attribute",
+          'choices': [
+            "In the BodyguardAnt's ant instance attribute",
+            "In the BodyguardAnt's ant class attribute",
+            "In its place's ant instance attribute",
+            "Nowhere, a BodyguardAnt has no knowledge of the ant that it's protecting"
+          ],
+          'hidden': False,
+          'locked': False,
+          'question': 'Where is the ant contained by a BodyguardAnt stored?'
+        },
+        {
+          'answer': 'container is False for every Ant subclass except BodyguardAnt',
+          'choices': [
+            'container is False for every Ant subclass except BodyguardAnt',
+            'container is True for every Ant subclass except BodyguardAnt',
+            'container is True for all Ants',
+            'container is False for all Ants'
+          ],
+          'hidden': False,
+          'locked': False,
+          'question': 'What is the value of the container attribute for each Ant subclass?'
+        },
+        {
+          'answer': 'When exactly one of the Ant instances is a container and the container ant does not already contain another ant',
+          'choices': [
+            r"""
+            When exactly one of the Ant instances is a container and the
+            container ant does not already contain another ant
+            """,
+            'When exactly one of the Ant instances is a container',
+            'When both Ant instances are containers',
+            'There can never be two Ant instances in the same place'
+          ],
+          'hidden': False,
+          'locked': False,
+          'question': 'When are two Ant instances allowed to occupy the same Place?'
+        },
+        {
+          'answer': 'The container Ant',
+          'choices': [
+            'The container Ant',
+            'The Ant being contained',
+            'A list containing both Ants',
+            'Whichever Ant was placed there first'
+          ],
+          'hidden': False,
+          'locked': False,
+          'question': r"""
+          If two Ants occupy the same Place, what is stored in that place's ant
+          instance attribute?
+          """
+        }
+      ],
+      'scored': False,
+      'type': 'concept'
+    },
+    {
+      'cases': [
+        {
+          'code': r"""
+          >>> # Testing BodyguardAnt parameters
+          >>> bodyguard = BodyguardAnt()
+          >>> BodyguardAnt.food_cost
+          4
+          >>> bodyguard.armor
+          2
+          """,
+          'hidden': False,
+          'locked': False
+        }
+      ],
+      'scored': True,
+      'setup': r"""
+      >>> from ants import *
+      """,
+      'teardown': '',
+      'type': 'doctest'
+    },
+    {
+      'cases': [
+        {
+          'code': r"""
+          >>> bodyguard = BodyguardAnt()
+          >>> bodyguard.action(colony) # Action without contained ant should not error
+          """,
+          'hidden': False,
+          'locked': False
+        },
+        {
+          'code': r"""
+          >>> # Testing bodyguard performs thrower's action
+          >>> bodyguard = BodyguardAnt()
+          >>> thrower = ThrowerAnt()
+          >>> bee = Bee(2)
+          >>> # Place bodyguard before thrower
+          >>> colony.places["tunnel_0_0"].add_insect(bodyguard)
+          >>> colony.places["tunnel_0_0"].add_insect(thrower)
+          >>> colony.places["tunnel_0_3"].add_insect(bee)
+          >>> bodyguard.action(colony)
+          >>> bee.armor
+          1
+          """,
+          'hidden': False,
+          'locked': False
+        },
+        {
+          'code': r"""
+          >>> # Testing bodyguard performs thrower's action
+          >>> bodyguard = BodyguardAnt()
+          >>> thrower = ThrowerAnt()
+          >>> bee = Bee(2)
+          >>> # Place thrower before bodyguard
+          >>> colony.places["tunnel_0_0"].add_insect(thrower)
+          >>> colony.places["tunnel_0_0"].add_insect(bodyguard)
+          >>> colony.places["tunnel_0_3"].add_insect(bee)
+          >>> bodyguard.action(colony)
+          >>> bee.armor
+          1
+          """,
+          'hidden': False,
+          'locked': False
+        },
+        {
+          'code': r"""
+          >>> # Testing removing a bodyguard doesn't remove contained ant
+          >>> place = colony.places['tunnel_0_0']
+          >>> bodyguard = BodyguardAnt()
+          >>> test_ant = Ant(1)
+          >>> place.add_insect(bodyguard)
+          >>> place.add_insect(test_ant)
+          >>> colony.remove_ant('tunnel_0_0')
+          >>> place.ant is test_ant
+          True
+          """,
+          'hidden': False,
+          'locked': False
+        },
+        {
+          'code': r"""
+          >>> # Testing bodyguarded ant keeps instance attributes
+          >>> test_ant = Ant()
+          >>> def new_action(colony):
+          ...     test_ant.armor += 9000
+          >>> test_ant.action = new_action
+          >>> place = colony.places['tunnel_0_0']
+          >>> bodyguard = BodyguardAnt()
+          >>> place.add_insect(test_ant)
+          >>> place.add_insect(bodyguard)
+          >>> place.ant.action(colony)
+          >>> place.ant.ant.armor
+          9001
+          """,
+          'hidden': False,
+          'locked': False
+        },
+        {
+          'code': r"""
+          >>> # Testing if we can construct a container besides BodyGuard
+          >>> ant = ThrowerAnt()
+          >>> ant.container = True
+          >>> ant.ant = None
+          >>> ant.can_contain(ThrowerAnt())
+          True
+          """,
+          'hidden': False,
+          'locked': False
+        },
+        {
+          'code': r"""
+          >>> # Testing container can contain a special non-container bodyguard
+          >>> bodyguard = BodyguardAnt()
+          >>> mod_guard = BodyguardAnt()
+          >>> mod_guard.container = False
+          >>> bodyguard.can_contain(mod_guard)
+          True
+          """,
+          'hidden': False,
+          'locked': False
+        }
+      ],
+      'scored': True,
+      'setup': r"""
+      >>> from ants import *
+      >>> hive, layout = Hive(AssaultPlan()), dry_layout
+      >>> colony = AntColony(None, hive, ant_types(), layout, (1, 9))
+      """,
+      'teardown': '',
+      'type': 'doctest'
+    }
+  ]
+}
+test = {
+  'name': 'Problem 10',
+  'points': 1,
+  'suites': [
+    {
+      'cases': [
+        {
+          'answer': 'A TankAnt does damage to all Bees in its place each turn',
+          'choices': [
+            'A TankAnt does damage to all Bees in its place each turn',
+            'A TankAnt has greater armor than a BodyguardAnt',
+            'A TankAnt can contain multiple ants',
+            'A TankAnt increases the damage of the ant it contains'
+          ],
+          'hidden': False,
+          'locked': False,
+          'question': r"""
+          Besides costing more to deploy, what is the only difference between a
+          TankAnt and a BodyguardAnt?
+          """
+        }
+      ],
+      'scored': False,
+      'type': 'concept'
+    },
+    {
+      'cases': [
+        {
+          'code': r"""
+          >>> # Testing TankAnt parameters
+          >>> TankAnt.food_cost
+          6
+          >>> TankAnt.damage
+          1
+          >>> TankAnt.container
+          True
+          >>> tank = TankAnt()
+          >>> tank.armor
+          2
+          """,
+          'hidden': False,
+          'locked': False
+        },
+        {
+          'code': r"""
+          >>> # Testing TankAnt action
+          >>> tank = TankAnt()
+          >>> place = colony.places['tunnel_0_1']
+          >>> place.add_insect(tank)
+          >>> for _ in range(3):
+          ...     place.add_insect(Bee(3))
+          >>> tank.action(colony)
+          >>> [bee.armor for bee in place.bees]
+          [2, 2, 2]
+          """,
+          'hidden': False,
+          'locked': False
+        },
+        {
+          'code': r"""
+          >>> # Testing TankAnt container methods
+          >>> tank = TankAnt()
+          >>> thrower = ThrowerAnt()
+          >>> place = colony.places['tunnel_0_1']
+          >>> place.add_insect(thrower)
+          >>> place.add_insect(tank)
+          >>> place.ant is tank
+          True
+          >>> bee = Bee(3)
+          >>> place.add_insect(bee)
+          >>> tank.action(colony)   # Both ants attack bee
+          >>> bee.armor
+          1
+          """,
+          'hidden': False,
+          'locked': False
+        }
+      ],
+      'scored': True,
+      'setup': r"""
+      >>> from ants import *
+      >>> hive, layout = Hive(make_test_assault_plan()), dry_layout
+      >>> dimensions = (1, 9)
+      >>> colony = AntColony(None, hive, ant_types(), layout, dimensions)
+      """,
+      'teardown': '',
+      'type': 'doctest'
+    },
+    {
+      'cases': [
+        {
+          'code': r"""
+          >>> # Testing TankAnt action
+          >>> tank = TankAnt()
+          >>> place = colony.places['tunnel_0_1']
+          >>> place.add_insect(tank)
+          >>> for _ in range(3):
+          ...     place.add_insect(Bee(1))
+          >>> tank.action(colony)
+          >>> len(place.bees)
+          0
+          """,
+          'hidden': False,
+          'locked': False
+        },
+        {
+          'code': r"""
+          >>> # Placement of ants
+          >>> tank0 = TankAnt()
+          >>> tank1 = TankAnt()
+          >>> harvester0 = HarvesterAnt()
+          >>> harvester1 = HarvesterAnt()
+          >>> place0 = colony.places['tunnel_0_0']
+          >>> place1 = colony.places['tunnel_0_1']
+          >>> # Add tank before harvester
+          >>> place0.add_insect(tank0)
+          >>> place0.add_insect(harvester0)
+          >>> colony.food = 0
+          >>> tank0.action(colony)
+          >>> colony.food
+          1
+          >>> for ant in [TankAnt(), HarvesterAnt()]:
+          ...     try:
+          ...         place0.add_insect(ant)
+          ...     except AssertionError:
+          ...         assert place0.ant is tank0,\
+          ...                 'Tank was kicked out by {0}'.format(ant)
+          ...         assert tank0.ant is harvester0,\
+          ...                 'Contained ant was kicked out by {0}'.format(ant)
+          ...         continue
+          ...     assert False, 'No AssertionError raised when adding {0}'.format(ant)
+          >>> # Add harvester before tank
+          >>> place1.add_insect(harvester1)
+          >>> place1.add_insect(tank1)
+          >>> tank1.action(colony)
+          >>> colony.food
+          2
+          >>> for ant in [TankAnt(), HarvesterAnt()]:
+          ...     try:
+          ...         place1.add_insect(ant)
+          ...     except AssertionError:
+          ...         assert place1.ant is tank1,\
+          ...                 'Tank was kicked out by {0}'.format(ant)
+          ...         assert tank1.ant is harvester1,\
+          ...                 'Contained ant was kicked out by {0}'.format(ant)
+          ...         continue
+          ...     assert False, 'No AssertionError raised when adding {0}'.format(ant)
+          >>> tank0.reduce_armor(tank0.armor)
+          >>> place0.ant is harvester0
+          True
+          """,
+          'hidden': False,
+          'locked': False
+        },
+        {
+          'code': r"""
+          >>> # Removing ants
+          >>> tank = TankAnt()
+          >>> test_ant = Ant()
+          >>> place = Place('Test')
+          >>> place.add_insect(tank)
+          >>> place.add_insect(test_ant)
+          >>> place.remove_insect(test_ant)
+          >>> tank.ant is None
+          True
+          >>> test_ant.place is None
+          True
+          >>> place.remove_insect(tank)
+          >>> place.ant is None
+          True
+          >>> tank.place is None
+          True
+          """,
+          'hidden': False,
+          'locked': False
+        },
+        {
+          'code': r"""
+          >>> tank = TankAnt()
+          >>> place = Place('Test')
+          >>> place.add_insect(tank)
+          >>> tank.action(colony) # Action without contained ant should not error
+          """,
+          'hidden': False,
+          'locked': False
+        }
+      ],
+      'scored': True,
+      'setup': r"""
+      >>> from ants import *
+      >>> hive, layout = Hive(make_test_assault_plan()), dry_layout
+      >>> dimensions = (1, 9)
+      >>> colony = AntColony(None, hive, ant_types(), layout, dimensions)
+      """,
+      'teardown': '',
+      'type': 'doctest'
+    }
+  ]
+}
+test = {
+  'name': 'Problem 11',
+  'points': 1,
+  'suites': [
+    {
+      'cases': [
+        {
+          'answer': 'If the insect is not watersafe, its armor is reduced to 0. Otherwise, nothing happens.',
+          'choices': [
+            r"""
+            If the insect is not watersafe, its armor is reduced to 0.
+            Otherwise, nothing happens.
+            """,
+            "The insect's armor is reduced to 0.",
+            'Nothing happens.',
+            'The insect goes for a swim.'
+          ],
+          'hidden': False,
+          'locked': False,
+          'question': 'What happens when an insect is added to a Water Place?'
+        },
+        {
+          'answer': 'class attribute',
+          'choices': [
+            'class attribute',
+            'instance attribute'
+          ],
+          'hidden': False,
+          'locked': False,
+          'question': 'What type of attribute should "watersafe" be?'
+        },
+        {
+          'answer': 'reduce_armor, in the Insect class',
+          'choices': [
+            'reduce_armor, in the Insect class',
+            'remove_insect, in the Place class',
+            'sting, in the Bee class',
+            'remove_ant, in the AntColony class'
+          ],
+          'hidden': False,
+          'locked': False,
+          'question': r"""
+          What method deals damage to an Insect and removes it from its place
+          if its armor reaches 0?
+          """
+        }
+      ],
+      'scored': False,
+      'type': 'concept'
+    },
+    {
+      'cases': [
+        {
+          'code': r"""
+          >>> # Testing water with Ants
+          >>> test_ants = [HarvesterAnt(), Ant(), ThrowerAnt()]
+          >>> test_water = Water('Water Test1')
+          >>> for test_ant in test_ants:
+          ...     test_water.add_insect(test_ant)
+          ...     assert test_ant.armor == 0,\
+          ...             '{0} should have 0 armor'.format(test_ant)
+          ...     assert test_water.ant is None,\
+          ...             '{0} not removed from water'.format(test_ant)
+          """,
+          'hidden': False,
+          'locked': False
+        },
+        {
+          'code': r"""
+          >>> # Testing water with soggy (non-watersafe) bees
+          >>> test_bee = Bee(1000000)
+          >>> test_bee.watersafe = False    # Make Bee non-watersafe
+          >>> test_water = Water('Water Test2')
+          >>> test_water.add_insect(test_bee)
+          >>> assert test_bee.armor == 0,\
+          ...         '{0} should have 0 armor'.format(test_bee)
+          >>> assert len(test_water.bees) == 0,\
+          ...         '{0} not removed from water'.format(test_bee)
+          """,
+          'hidden': False,
+          'locked': False
+        },
+        {
+          'code': r"""
+          >>> # Testing water with watersafe bees
+          >>> test_bee = Bee(1)
+          >>> test_water = Water('Water Test3')
+          >>> test_water.add_insect(test_bee)
+          >>> assert test_bee.armor == 1,\
+          ...         '{0} should not drown'.format(test_bee)
+          >>> assert test_bee in test_water.bees,\
+          ...         '{0} should not have been removed from place'.format(test_bee)
+          """,
+          'hidden': False,
+          'locked': False
+        }
+      ],
+      'scored': True,
+      'setup': r"""
+      >>> from ants import *
+      >>> hive, layout = Hive(make_test_assault_plan()), dry_layout
+      >>> dimensions = (1, 9)
+      >>> colony = AntColony(None, hive, ant_types(), layout, dimensions)
+      """,
+      'teardown': '',
+      'type': 'doctest'
+    },
+    {
+      'cases': [
+        {
+          'code': r"""
+          >>> # Testing water inheritance
+          >>> def new_add_insect(self, insect):
+          ...     raise NotImplementedError()
+          
+          >>> Place.add_insect = new_add_insect
+          >>> test_bee = Bee(1)
+          >>> test_water = Water('Water Test4')
+          >>> passed = False
+          >>> try:
+          ...     test_water.add_insect(test_bee)
+          ... except NotImplementedError:
+          ...     passed = True
+          >>> passed
+          True
+          """,
+          'hidden': False,
+          'locked': False
+        },
+        {
+          'code': r"""
+          >>> ### Make sure to place the ant before watering it!
+          >>> def new_add_insect(self, insect):
+          ...     raise NotImplementedError()
+          
+          >>> Place.add_insect = new_add_insect
+          >>> test_ant = HarvesterAnt()
+          >>> test_water = Water('Water Test5')
+          >>> passed = False
+          >>> try:
+          ...     test_water.add_insect(test_ant)
+          ... except NotImplementedError:
+          ...     passed = True
+          >>> passed
+          True
+          """,
+          'hidden': False,
+          'locked': False
+        }
+      ],
+      'scored': True,
+      'setup': r"""
+      >>> from ants import *
+      >>> hive, layout = Hive(make_test_assault_plan()), dry_layout
+      >>> dimensions = (1, 9)
+      >>> colony = AntColony(None, hive, ant_types(), layout, dimensions)
+      >>> old_add_insect = Place.add_insect
+      """,
+      'teardown': r"""
+      >>> Place.add_insect = old_add_insect
+      """,
+      'type': 'doctest'
+    }
+  ]
+}
+test = {
+  'name': 'Problem 12',
+  'points': 1,
+  'suites': [
+    {
+      'cases': [
+        {
+          'answer': "It is watersafe, so its armor won't be reduced to 0 when it is placed in a Water Place",
+          'choices': [
+            r"""
+            It is watersafe, so its armor won't be reduced to 0 when it is
+            placed in a Water Place
+            """,
+            r"""
+            It is not watersafe, so its armor will be reduced to 0 when it is
+            placed in a Water Place
+            """,
+            'It throws water pellets instead of leaves'
+          ],
+          'hidden': False,
+          'locked': False,
+          'question': 'How is a ScubaThrower different from a regular ThrowerAnt?'
+        },
+        {
+          'answer': 'name, watersafe, food_cost',
+          'choices': [
+            'name, watersafe, food_cost',
+            'food_cost, action, damage',
+            'watersafe, action',
+            'name, nearest_bee, watersafe'
+          ],
+          'hidden': False,
+          'locked': False,
+          'question': r"""
+          Which inherited attributes and/or methods should ScubaThrower
+          override?
+          """
+        }
+      ],
+      'scored': False,
+      'type': 'concept'
+    },
+    {
+      'cases': [
+        {
+          'code': r"""
+          >>> # Testing ScubaThrower parameters
+          >>> scuba = ScubaThrower()
+          >>> ScubaThrower.food_cost
+          6
+          >>> scuba.armor
+          1
+          """,
+          'hidden': False,
+          'locked': False
+        }
+      ],
+      'scored': False,
+      'setup': r"""
+      >>> from ants import *
+      """,
+      'teardown': '',
+      'type': 'doctest'
+    },
+    {
+      'cases': [
+        {
+          'code': r"""
+          >>> # Testing if ScubaThrower is watersafe
+          >>> water = Water('Water')
+          >>> ant = ScubaThrower()
+          >>> water.add_insect(ant)
+          >>> ant.place is water
+          True
+          >>> ant.armor
+          1
+          """,
+          'hidden': False,
+          'locked': False
+        },
+        {
+          'code': r"""
+          >>> # Testing ScubaThrower on land
+          >>> place1 = colony.places["tunnel_0_0"]
+          >>> place2 = colony.places["tunnel_0_4"]
+          >>> ant = ScubaThrower()
+          >>> bee = Bee(3)
+          >>> place1.add_insect(ant)
+          >>> place2.add_insect(bee)
+          >>> ant.action(colony)
+          >>> bee.armor  # ScubaThrower can throw on land
+          2
+          """,
+          'hidden': False,
+          'locked': False
+        },
+        {
+          'code': r"""
+          >>> # Testing ScubaThrower in the water
+          >>> water = Water("water")
+          >>> water.entrance = colony.places["tunnel_0_1"]
+          >>> target = colony.places["tunnel_0_4"]
+          >>> ant = ScubaThrower()
+          >>> bee = Bee(3)
+          >>> water.add_insect(ant)
+          >>> target.add_insect(bee)
+          >>> ant.action(colony)
+          >>> bee.armor  # ScubaThrower can throw in water
+          2
+          """,
+          'hidden': False,
+          'locked': False
+        }
+      ],
+      'scored': True,
+      'setup': r"""
+      >>> from ants import *
+      >>> hive, layout = Hive(AssaultPlan()), dry_layout
+      >>> dimensions = (1, 9)
+      >>> colony = AntColony(None, hive, ant_types(), layout, dimensions)
+      """,
+      'teardown': '',
+      'type': 'doctest'
+    },
+    {
+      'cases': [
+        {
+          'code': r"""
+          >>> # Testing ScubaThrower Inheritance from ThrowerAnt
+          >>> def new_action(self, colony):
+          ...     raise NotImplementedError()
+          >>> def new_throw_at(self, target):
+          ...     raise NotImplementedError()
+          >>> ThrowerAnt.action = new_action
+          >>> test_scuba = ScubaThrower()
+          >>> passed = 0
+          >>> try:
+          ...     test_scuba.action(colony)
+          ... except NotImplementedError:
+          ...     passed += 1
+          >>> ThrowerAnt.action = old_thrower_action
+          >>> ThrowerAnt.throw_at = new_throw_at
+          >>> test_scuba = ScubaThrower()
+          >>> try:
+          ...     test_scuba.throw_at(Bee(1))
+          ... except NotImplementedError:
+          ...     passed += 1
+          >>> ThrowerAnt.throw_at = old_throw_at
+          >>> passed
+          2
+          """,
+          'hidden': False,
+          'locked': False
+        }
+      ],
+      'scored': True,
+      'setup': r"""
+      >>> from ants import *
+      >>> hive, layout = Hive(AssaultPlan()), dry_layout
+      >>> dimensions = (1, 9)
+      >>> colony = AntColony(None, hive, ant_types(), layout, dimensions)
+      >>> old_thrower_action = ThrowerAnt.action
+      >>> old_throw_at = ThrowerAnt.throw_at
+      """,
+      'teardown': r"""
+      >>> ThrowerAnt.action = old_thrower_action
+      >>> ThrowerAnt.throw_at = old_throw_at
+      """,
+      'type': 'doctest'
+    }
+  ]
+}
+test = {
+  'name': 'Problem 13',
+  'points': 4,
+  'suites': [
+    {
+      'cases': [
+        {
+          'answer': 'ScubaThrower',
+          'choices': [
+            'ScubaThrower',
+            'Ant',
+            'Insect',
+            'AntColony'
+          ],
+          'hidden': False,
+          'locked': False,
+          'question': 'What class does QueenAnt inherit from?'
+        },
+        {
+          'answer': 'The first QueenAnt that is instantiated',
+          'choices': [
+            'The first QueenAnt that is instantiated',
+            'The second QueenAnt that is instantiated',
+            'The most recent QueenAnt that is instantiated',
+            'All QueenAnt instances are true QueenAnts'
+          ],
+          'hidden': False,
+          'locked': False,
+          'question': 'Which QueenAnt instance is the true QueenAnt?'
+        },
+        {
+          'answer': 'Its armor is reduced to 0 upon taking its first action',
+          'choices': [
+            'Its armor is reduced to 0 upon taking its first action',
+            'Nothing, the game ends',
+            'The armor of the first QueenAnt is reduced to 0',
+            'It doubles the damage of all the ants behind it'
+          ],
+          'hidden': False,
+          'locked': False,
+          'question': r"""
+          What happens to any QueenAnt instance that is instantiated after the
+          first one?
+          """
+        },
+        {
+          'answer': "Attacks the nearest bee and doubles the damage of all the ants behind her (that haven't already been doubled)",
+          'choices': [
+            r"""
+            Attacks the nearest bee and doubles the damage of all the ants
+            behind her (that haven't already been doubled)
+            """,
+            r"""
+            Doubles the damage of all the ants behind her (that haven't
+            already been doubled)
+            """,
+            r"""
+            Doubles the damage of all the ants in front of her (that haven't
+            already been doubled)
+            """,
+            r"""
+            Doubles the damage of all the ants in the colony (that haven't
+            already been doubled)
+            """
+          ],
+          'hidden': False,
+          'locked': False,
+          'question': 'What does the true QueenAnt do each turn?'
+        },
+        {
+          'answer': 'If a Bee reaches the end of a tunnel or the true QueenAnt dies',
+          'choices': [
+            'If a Bee reaches the end of a tunnel or the true QueenAnt dies',
+            'If there are no ants left in the colony',
+            'If an imposter QueenAnt is placed in the colony',
+            'If a Bee attacks the true QueenAnt'
+          ],
+          'hidden': False,
+          'locked': False,
+          'question': 'Under what circumstances do Bees win the game?'
+        }
+      ],
+      'scored': False,
+      'type': 'concept'
+    },
+    {
+      'cases': [
+        {
+          'code': r"""
+          >>> # Testing QueenAnt parameters
+          >>> QueenAnt.food_cost
+          7
+          >>> queen = QueenAnt()
+          >>> queen.armor
+          1
+          """,
+          'hidden': False,
+          'locked': False
+        }
+      ],
+      'scored': True,
+      'setup': r"""
+      >>> from ants import *
+      """,
+      'teardown': '',
+      'type': 'doctest'
+    },
+    {
+      'cases': [
+        {
+          'code': r"""
+          >>> # QueenAnt Placement
+          >>> queen = ants.QueenAnt()
+          >>> impostor = ants.QueenAnt()
+          >>> front_ant, back_ant = ants.ThrowerAnt(), ants.ThrowerAnt()
+          >>> tunnel = [colony.places['tunnel_0_{0}'.format(i)]
+          ...         for i in range(9)]
+          >>> tunnel[1].add_insect(back_ant)
+          >>> tunnel[7].add_insect(front_ant)
+          >>> tunnel[4].add_insect(impostor)
+          >>> impostor.action(colony)
+          >>> impostor.armor            # Impostors must die!
+          0
+          >>> tunnel[4].ant is None
+          True
+          >>> back_ant.damage           # Ants should not be buffed
+          1
+          >>> front_ant.damage
+          1
+          >>> tunnel[4].add_insect(queen)
+          >>> queen.action(colony)
+          >>> queen.armor               # Long live the Queen!
+          1
+          >>> back_ant.damage           # Ants behind queen should be buffed
+          2
+          >>> front_ant.damage
+          1
+          """,
+          'hidden': False,
+          'locked': False
+        },
+        {
+          'code': r"""
+          >>> # QueenAnt Removal
+          >>> queen = ants.QueenAnt()
+          >>> impostor = ants.QueenAnt()
+          >>> place = colony.places['tunnel_0_2']
+          >>> place.add_insect(impostor)
+          >>> place.remove_insect(impostor)
+          >>> place.ant is None         # Impostors can be removed
+          True
+          >>> place.add_insect(queen)
+          >>> place.remove_insect(queen)
+          >>> place.ant is queen        # True queen cannot be removed
+          True
+          """,
+          'hidden': False,
+          'locked': False
+        },
+        {
+          'code': r"""
+          >>> # QueenAnt knows how to swim
+          >>> queen = ants.QueenAnt()
+          >>> water = ants.Water('Water')
+          >>> water.add_insect(queen)
+          >>> queen.armor
+          1
+          """,
+          'hidden': False,
+          'locked': False
+        },
+        {
+          'code': r"""
+          >>> # Testing damage multiplier
+          >>> queen_tunnel, side_tunnel = [[colony.places['tunnel_{0}_{1}'.format(i, j)]
+          ...         for j in range(9)] for i in range(2)]
+          >>> queen = ants.QueenAnt()
+          >>> back = ants.ThrowerAnt()
+          >>> front = ants.ThrowerAnt()
+          >>> guard = ants.BodyguardAnt()
+          >>> guarded = ants.ThrowerAnt()
+          >>> side = ants.ThrowerAnt()
+          >>> bee = ants.Bee(10)
+          >>> side_bee = ants.Bee(10)
+          >>> queen_tunnel[0].add_insect(back)
+          >>> queen_tunnel[1].add_insect(guard)
+          >>> queen_tunnel[1].add_insect(guarded)
+          >>> queen_tunnel[2].add_insect(queen)
+          >>> queen_tunnel[3].add_insect(front)
+          >>> side_tunnel[0].add_insect(side)
+          >>> queen_tunnel[4].add_insect(bee)
+          >>> side_tunnel[4].add_insect(side_bee)
+          >>> queen.action(colony)
+          >>> bee.armor
+          9
+          >>> back.action(colony)
+          >>> bee.armor
+          7
+          >>> front.action(colony)
+          >>> bee.armor
+          6
+          >>> guard.action(colony)
+          >>> bee.armor
+          4
+          >>> side.action(colony)
+          >>> side_bee.armor
+          9
+          """,
+          'hidden': False,
+          'locked': False
+        }
+      ],
+      'scored': True,
+      'setup': r"""
+      >>> import ants, importlib
+      >>> importlib.reload(ants)
+      >>> hive = ants.Hive(ants.AssaultPlan())
+      >>> dimensions = (2, 9)
+      >>> colony = ants.AntColony(None, hive, ants.ant_types(),
+      ...         ants.dry_layout, dimensions)
+      >>> ants.bees_win = lambda: None
+      """,
+      'teardown': '',
+      'type': 'doctest'
+    },
+    {
+      'cases': [
+        {
+          'code': r"""
+          >>> # Testing game over
+          >>> queen = ants.QueenAnt()
+          >>> impostor = ants.QueenAnt()
+          >>> tunnel = [colony.places['tunnel_0_{0}'.format(i)]
+          ...         for i in range(9)]
+          >>> tunnel[4].add_insect(queen)
+          >>> tunnel[6].add_insect(impostor)
+          >>> bee = ants.Bee(3)
+          >>> tunnel[6].add_insect(bee)     # Bee in place with impostor
+          >>> bee.action(colony)            # Game should not end
+          
+          >>> bee.move_to(tunnel[4])        # Bee moved to place with true queen
+          >>> bee.action(colony)            # Game should end
+          BeesWinException
+          """,
+          'hidden': False,
+          'locked': False
+        },
+        {
+          'code': r"""
+          >>> # Testing if queen will not crash with no one to buff
+          >>> queen = ants.QueenAnt()
+          >>> colony.places['tunnel_0_2'].add_insect(queen)
+          >>> queen.action(colony)
+          >>> # Attack a bee
+          >>> bee = ants.Bee(3)
+          >>> colony.places['tunnel_0_4'].add_insect(bee)
+          >>> queen.action(colony)
+          >>> bee.armor # Queen should still hit the bee
+          2
+          """,
+          'hidden': False,
+          'locked': False
+        },
+        {
+          'code': r"""
+          >>> # Testing QueenAnt action method
+          >>> queen = ants.QueenAnt()
+          >>> impostor = ants.QueenAnt()
+          >>> bee = ants.Bee(10)
+          >>> ant = ants.ThrowerAnt()
+          >>> colony.places['tunnel_0_0'].add_insect(ant)
+          >>> colony.places['tunnel_0_1'].add_insect(queen)
+          >>> colony.places['tunnel_0_2'].add_insect(impostor)
+          >>> colony.places['tunnel_0_4'].add_insect(bee)
+          
+          >>> impostor.action(colony)
+          >>> bee.armor   # Impostor should not damage bee
+          10
+          >>> ant.damage  # Impostor should not double damage
+          1
+          
+          >>> queen.action(colony)
+          >>> bee.armor   # Queen should damage bee
+          9
+          >>> ant.damage  # Queen should double damage
+          2
+          >>> ant.action(colony)
+          >>> bee.armor   # If failed, ThrowerAnt has incorrect damage
+          7
+          
+          >>> queen.armor   # Long live the Queen
+          1
+          >>> impostor.armor  # Short-lived impostor
+          0
+          """,
+          'hidden': False,
+          'locked': False
+        },
+        {
+          'code': r"""
+          >>> # Extensive damage doubling tests
+          >>> queen_tunnel, side_tunnel = [[colony.places['tunnel_{0}_{1}'.format(i, j)]
+          ...         for j in range(9)] for i in range(2)]
+          >>> queen = ants.QueenAnt()
+          >>> queen_tunnel[7].add_insect(queen)
+          >>> # Turn 0
+          >>> thrower = ants.ThrowerAnt()
+          >>> fire = ants.FireAnt()
+          >>> ninja = ants.NinjaAnt()
+          >>> side = ants.ThrowerAnt()
+          >>> front = ants.NinjaAnt()
+          >>> queen_tunnel[0].add_insect(thrower)
+          >>> queen_tunnel[1].add_insect(fire)
+          >>> queen_tunnel[2].add_insect(ninja)
+          >>> queen_tunnel[8].add_insect(front)
+          >>> side_tunnel[0].add_insect(side)
+          >>> buffed_ants = [thrower, fire, ninja]
+          >>> old_dmgs = [ant.damage for ant in buffed_ants]
+          >>> queen.action(colony)
+          >>> for ant, dmg in zip(buffed_ants, old_dmgs):
+          ...     assert ant.damage == dmg * 2,\
+          ...         "{0}'s damage is {1}, but should be {2}".format(ant, ant.damage, dmg * 2)
+          >>> for ant in [side, front]:
+          ...     assert ant.damage == dmg,\
+          ...         "{0}'s damage is {1}, but should be {2}".format(ant, ant.damage, dmg)
+          >>> assert queen.damage == 1,\
+          ...     'QueenAnt damage was modified to {0}'.format(ant.damage)
+          >>> # Turn 1
+          >>> tank = ants.TankAnt()
+          >>> guard = ants.BodyguardAnt()
+          >>> queen_tank = ants.TankAnt()
+          >>> queen_tunnel[6].add_insect(tank)          # Not protecting an ant
+          >>> queen_tunnel[1].add_insect(guard)         # Guarding FireAnt
+          >>> queen_tunnel[7].add_insect(queen_tank)    # Guarding QueenAnt
+          >>> buffed_ants.extend([tank, guard])
+          >>> old_dmgs.extend([ant.damage for ant in [tank, guard, queen_tank]])
+          >>> queen.action(colony)
+          >>> for ant, dmg in zip(buffed_ants, old_dmgs):
+          ...     assert ant.damage == dmg * 2,\
+          ...         "{0}'s damage is {1}, but should be {2}".format(ant, ant.damage, dmg * 2)
+          >>> # Turn 2
+          >>> thrower1 = ants.ThrowerAnt()
+          >>> thrower2 = ants.ThrowerAnt()
+          >>> queen_tunnel[6].add_insect(thrower1)      # Add thrower1 in TankAnt
+          >>> queen_tunnel[5].add_insect(thrower2)
+          >>> buffed_ants.extend([thrower1, thrower2])
+          >>> old_dmgs.extend([ant.damage for ant in [thrower1, thrower2]])
+          >>> queen.action(colony)
+          >>> for ant, dmg in zip(buffed_ants, old_dmgs):
+          ...     assert ant.damage == dmg * 2,\
+          ...         "{0}'s damage is {1}, but should be {2}".format(ant, ant.damage, dmg * 2)
+          >>> # Turn 3
+          >>> tank.reduce_armor(tank.armor)             # Expose thrower1
+          >>> queen.action(colony)
+          >>> for ant, dmg in zip(buffed_ants, old_dmgs):
+          ...     assert ant.damage == dmg * 2,\
+          ...         "{0}'s damage is {1}, but should be {2}".format(ant, ant.damage, dmg * 2)
+          """,
+          'hidden': False,
+          'locked': False
+        },
+        {
+          'code': r"""
+          >>> # Adding/Removing QueenAnt with Container
+          >>> queen = ants.QueenAnt()
+          >>> impostor = ants.QueenAnt()
+          >>> container = ants.TankAnt()
+          >>> colony.places['tunnel_0_3'].add_insect(container)
+          >>> colony.places['tunnel_0_3'].add_insect(impostor)
+          >>> impostor.action(colony)
+          >>> colony.places['tunnel_0_3'].ant is container
+          True
+          >>> container.place is colony.places['tunnel_0_3']
+          True
+          >>> container.ant is None
+          True
+          >>> impostor.place is None
+          True
+          >>> colony.places['tunnel_0_3'].add_insect(queen)
+          >>> colony.places['tunnel_0_3'].remove_insect(queen)
+          >>> container.ant is queen
+          True
+          >>> queen.place is colony.places['tunnel_0_3']
+          True
+          >>> queen.action(colony)
+          """,
+          'hidden': False,
+          'locked': False
+        }
+      ],
+      'scored': True,
+      'setup': r"""
+      >>> import ants, importlib
+      >>> importlib.reload(ants)
+      >>> hive = ants.Hive(ants.AssaultPlan())
+      >>> dimensions = (2, 9)
+      >>> colony = ants.AntColony(None, hive, ants.ant_types(),
+      ...         ants.dry_layout, dimensions)
+      """,
+      'teardown': '',
+      'type': 'doctest'
+    }
+  ]
+}
+test = {
+  'name': 'Problem EC',
+  'points': 2,
+  'suites': [
+    {
+      'cases': [
+        {
+          'code': r"""
+          >>> # Testing status parameters
+          >>> slow = SlowThrower()
+          >>> stun = StunThrower()
+          >>> SlowThrower.food_cost
+          c9452203eb0b0f0bd2454586a6c2fc5c
+          # locked
+          >>> StunThrower.food_cost
+          50ae32be3e31df6c59633df7fdfb3a72
+          # locked
+          >>> slow.armor
+          d89cf7c79d5a479b0f636734143ed5e6
+          # locked
+          >>> stun.armor
+          d89cf7c79d5a479b0f636734143ed5e6
+          # locked
+          """,
+          'hidden': False,
+          'locked': True
+        },
+        {
+          'code': r"""
+          >>> # Testing Slow
+          >>> slow = SlowThrower()
+          >>> bee = Bee(3)
+          >>> colony.places["tunnel_0_0"].add_insect(slow)
+          >>> colony.places["tunnel_0_4"].add_insect(bee)
+          >>> slow.action(colony)
+          >>> colony.time = 1
+          >>> bee.action(colony)
+          >>> bee.place.name # SlowThrower should cause slowness on odd turns
+          'tunnel_0_4'
+          >>> colony.time += 1
+          >>> bee.action(colony)
+          >>> bee.place.name # SlowThrower should cause slowness on odd turns
+          'tunnel_0_3'
+          >>> for _ in range(3):
+          ...    colony.time += 1
+          ...    bee.action(colony)
+          >>> bee.place.name
+          'tunnel_0_1'
+          """,
+          'hidden': False,
+          'locked': False
+        },
+        {
+          'code': r"""
+          >>> # Testing Stun
+          >>> error_msg = "StunThrower doesn't stun for exactly one turn."
+          >>> stun = StunThrower()
+          >>> bee = Bee(3)
+          >>> colony.places["tunnel_0_0"].add_insect(stun)
+          >>> colony.places["tunnel_0_4"].add_insect(bee)
+          >>> stun.action(colony)
+          >>> bee.action(colony)
+          >>> bee.place.name # StunThrower should stun for exactly one turn
+          'tunnel_0_4'
+          >>> bee.action(colony)
+          >>> bee.place.name # StunThrower should stun for exactly one turn
+          'tunnel_0_3'
+          """,
+          'hidden': False,
+          'locked': False
+        },
+        {
+          'code': r"""
+          >>> # Testing if effects stack
+          >>> stun = StunThrower()
+          >>> bee = Bee(3)
+          >>> stun_place = colony.places["tunnel_0_0"]
+          >>> bee_place = colony.places["tunnel_0_4"]
+          >>> stun_place.add_insect(stun)
+          >>> bee_place.add_insect(bee)
+          >>> for _ in range(4): # stun bee four times
+          ...    stun.action(colony)
+          
+          >>> passed = True
+          >>> for _ in range(4):
+          ...    bee.action(colony)
+          ...    if bee.place.name != 'tunnel_0_4':
+          ...        passed = False
+          
+          >>> passed
+          c7a88a0ffd3aef026b98eef6e7557da3
+          # locked
+          """,
+          'hidden': False,
+          'locked': True
+        },
+        {
+          'code': r"""
+          >>> # Testing multiple stuns
+          >>> stun1 = StunThrower()
+          >>> stun2 = StunThrower()
+          >>> bee1 = Bee(3)
+          >>> bee2 = Bee(3)
+          
+          >>> colony.places["tunnel_0_0"].add_insect(stun1)
+          >>> colony.places["tunnel_0_1"].add_insect(bee1)
+          >>> colony.places["tunnel_0_2"].add_insect(stun2)
+          >>> colony.places["tunnel_0_3"].add_insect(bee2)
+          
+          >>> stun1.action(colony)
+          >>> stun2.action(colony)
+          >>> bee1.action(colony)
+          >>> bee2.action(colony)
+          
+          >>> bee1.place.name
+          7f44338412808161209e944b1ee0f78c
+          # locked
+          >>> bee2.place.name
+          8344c19df8015306b462119efc8419cb
+          # locked
+          
+          >>> bee1.action(colony)
+          >>> bee2.action(colony)
+          
+          >>> bee1.place.name
+          3790e10c482a73d13ef2418977d50780
+          # locked
+          >>> bee2.place.name
+          ba5c35f55ba3229d1eb021382d9d19c5
+          # locked
+          """,
+          'hidden': False,
+          'locked': True
+        },
+        {
+          'code': r"""
+          >>> # Testing long effect stack
+          >>> stun = StunThrower()
+          >>> slow = SlowThrower()
+          >>> bee = Bee(3)
+          >>> colony.places["tunnel_0_0"].add_insect(stun)
+          >>> colony.places["tunnel_0_1"].add_insect(slow)
+          >>> colony.places["tunnel_0_4"].add_insect(bee)
+          >>> for _ in range(3): # slow bee three times
+          ...    slow.action(colony)
+          
+          >>> stun.action(colony) # stun bee once
+          
+          >>> colony.time = 0
+          >>> bee.action(colony) # stunned
+          >>> bee.place.name
+          040b6ad98a7360eba8d493c250a9b82e
+          # locked
+          
+          >>> colony.time = 1
+          >>> bee.action(colony) # slowed thrice
+          >>> bee.place.name
+          040b6ad98a7360eba8d493c250a9b82e
+          # locked
+          
+          >>> colony.time = 2
+          >>> bee.action(colony) # slowed thrice
+          >>> bee.place.name
+          8344c19df8015306b462119efc8419cb
+          # locked
+          
+          >>> colony.time = 3
+          >>> bee.action(colony) # slowed twice
+          >>> bee.place.name
+          8344c19df8015306b462119efc8419cb
+          # locked
+          
+          >>> colony.time = 4
+          >>> bee.action(colony) # slowed twice
+          >>> bee.place.name
+          ba5c35f55ba3229d1eb021382d9d19c5
+          # locked
+          
+          >>> colony.time = 5
+          >>> bee.action(colony) # slowed once
+          >>> bee.place.name
+          ba5c35f55ba3229d1eb021382d9d19c5
+          # locked
+          
+          >>> colony.time = 6
+          >>> bee.action(colony) # slowed once
+          >>> bee.place.name
+          7f44338412808161209e944b1ee0f78c
+          # locked
+          
+          >>> colony.time = 7
+          >>> bee.action(colony) # status effects have worn off
+          >>> slow.armor
+          73b94a1326ae2e803c3421016112207b
+          # locked
+          """,
+          'hidden': False,
+          'locked': True
+        }
+      ],
+      'scored': True,
+      'setup': r"""
+      >>> from ants import *
+      >>> hive, layout = Hive(AssaultPlan()), dry_layout
+      >>> dimensions = (1, 9)
+      >>> colony = AntColony(None, hive, ant_types(), layout, dimensions)
+      """,
+      'teardown': '',
+      'type': 'doctest'
+    }
+  ]
+}
